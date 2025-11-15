@@ -4,15 +4,19 @@
 using Markdown
 using InteractiveUtils
 
+#The order of the codes in each cell (marked with begin and end) are generally same as the ones in 2.training_and_evaluating_ml_models.ipynb in ai4chem,
+#because I wrote the Julia code after while going through the file in python first, and then once again, structuring it after the python codes except in Julia using a Pluto notebook. 
+#Most of the reordering is just to make the MordredFeaturizer standalone with minimal package and data usage.
+
 # ╔═╡ 514236f2-8856-4eed-9184-f527a9464672
 begin
 	mkpath("data")
 	using Downloads
-	url1 = "https://raw.githubusercontent.com/schwallergroup/ai4chem_course/main/notebooks/02%20-%20Supervised%20Learning/data/esol.csv"
+	#url1 = "https://raw.githubusercontent.com/schwallergroup/ai4chem_course/main/notebooks/02%20-%20Supervised%20Learning/data/esol.csv"
 	url2 = "https://raw.githubusercontent.com/schwallergroup/ai4chem_course/main/notebooks/02%20-%20Supervised%20Learning/data/toxcast_data.csv"
-	filepath1 = joinpath("data","esol.csv")
+	#filepath1 = joinpath("data","esol.csv")
 	filepath2 = joinpath("data","toxcast_data.csv")
-	Downloads.download(url1,filepath1)
+	#Downloads.download(url1,filepath1)
 	Downloads.download(url2,filepath2)
 end
 
@@ -22,14 +26,14 @@ begin
 	using DataFrames
 
 	# equivalent to esoldf=pd.read_csv('data/esol.csv') in python
-	esol_df = CSV.read("data/esol.csv", DataFrame)
+	
+	# esol_df = CSV.read("data/esol.csv", DataFrame)
 	df_toxicity = CSV.read("data/toxcast_data.csv", DataFrame)
 end
 	
 
 # ╔═╡ b4d38900-d2a5-4ad4-9a36-dc3f4d84f72f
 begin
-	
 	df_tox = select(df_toxicity, [:smiles, :TOX21_TR_LUC_GH3_Antagonist])
 
 	df_tox2 = dropmissing(df_tox)

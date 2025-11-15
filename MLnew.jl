@@ -52,16 +52,15 @@ begin
 	MordredDescriptors = feat.MordredDescriptors
 	featurizer = MordredDescriptors(ignore_3D=1)
 
-function featurize_one(smiles)
+function featurizef(smiles)
 	try
-		x = featurizer.featurize(smiles)
-		return x
-		catch
-		return nothing
+	featurizer.featurize(smiles)
+	catch
+	nothing
 	end
 end
 
-X_raw=featurize_one(smiles_list)
+X_raw=featurizef(smiles_list)
 
 print(first(X_raw,5))
 end
